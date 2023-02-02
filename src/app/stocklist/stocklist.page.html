@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-title style="color: blue;">warehouse stocklist</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div  class="container-fluid">
+    <div class="col-lg-8 ">
+      <table class="table table-lg" style="border: solid 2px;border-color: seagreen;">
+        <thead>
+          <th>ID</th>
+          <th>NAME</th>
+          <th>PRICE</th>
+          <th>MFD</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let stock of stocks">
+            <td>{{stock.id}}</td>
+            <td>{{stock.name}}</td>
+            <td>{{stock.price}}</td>
+            <td>{{stock.mfd}}</td>
+            <td><ion-button size="small" fill="outline" color="primary" (click)="editData(stock)">Edit</ion-button></td>
+            <td><ion-button size="small" fill="outline" color="danger" (click)="removeData(stock)">Delete</ion-button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div><br><br>
+    <div style="display: flex;flex-direction: column;border: solid 1px;border-color: seagreen;padding: 8px;"
+      class="col-lg-3 mx-3">
+      <form standalone style="margin:auto">
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating">ID</ion-label>
+            <ion-input type="text" disabled></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Name</ion-label>
+            <ion-input type="text" [(ngModel)]="detail.name" name="Name" autocomplete="off"></ion-input>
+          </ion-item>
+          <ion-item>
+          <ion-label position="floating">Price</ion-label>
+            <ion-input type="text" [(ngModel)]="detail.price" name="Price"></ion-input>
+          </ion-item>
+          <ion-item>
+          <ion-label position="floating">MFD</ion-label>
+          <ion-input type="text" [(ngModel)]="detail.mfd" name="MFD"></ion-input>
+        </ion-item>
+        </ion-list>
+        <div class="mx-4">
+          <ion-button size="small" fill="outline" color="success" (click)="saveOrEditData()">Save</ion-button>
+          <ion-button size="small" fill="outline" color="warning" (click)="cancel()">Cancel</ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>

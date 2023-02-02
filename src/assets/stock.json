@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "name": "Oreo",
+    "price":"30",
+    "mfd":"23-01-2023"
+  },
+
+  {
+    "id": 2,
+    "name": "Dark fantasy",
+    "price":"40",
+    "mfd":"09-11-2022"
+  },
+
+  {
+    "id": 3,
+    "name": "Marie gold",
+    "price":"20 ",
+    "mfd":"01-01-2023"
+  },
+
+  {
+    "id": 4,
+    "name": "Treat",
+    "price":"10",
+    "mfd":"12-12-2022"
+  }
+]
