@@ -1,13 +1,16 @@
 <ion-header>
-  <ion-toolbar >
-    <ion-title style="color: blue;">warehouse stocklist</ion-title>
+  <ion-toolbar color="light">
+    <ion-button slot="start">
+    <ion-back-button defaultHref="home"></ion-back-button>
+  </ion-button>
+    <ion-title style="text-align:center">warehouse stocklist</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div  class="container-fluid">
     <div class="col-lg-8 ">
-      <table class="table table-lg" style="border: solid 2px;border-color: seagreen;">
+      <table class="table table-lg" style="border: solid 2px;border-color: seagreen; background-color:cornsilk;">
         <thead>
           <th>ID</th>
           <th>NAME</th>
@@ -26,7 +29,7 @@
         </tbody>
       </table>
     </div><br><br>
-    <div style="display: flex;flex-direction: column;border: solid 1px;border-color: seagreen;padding: 8px;"
+    <div style="display: flex;flex-direction: column;border: solid 1px;border-color: seagreen;padding: 8px; background-color:cornsilk"
       class="col-lg-3 mx-3">
       <form standalone style="margin:auto">
         <ion-list>
