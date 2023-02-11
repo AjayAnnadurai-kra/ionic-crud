@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { flush } from '@angular/core/testing';
+import { StocksService } from './stocks.service';
 interface stock {
   id: Number;
   name: string;
@@ -13,41 +15,50 @@ interface stock {
 })
 export class StocklistPage implements OnInit {
 
-  stocks: stock[] | any;
+  stocks:  any;
   detail:any = {};
+  isModalOpen:boolean = false;
 
-  constructor() { }
+  constructor(public stockService:StocksService) {
+    this.getStocks();
+  }
 
+  getStocks(){
+       this.stockService.getStockPrice().subscribe(
+            resp => this.stocks = resp
+       )
+  }
+
+  add(){
+    this.isModalOpen = true;
+  }
+
+  close(){
+    this.isModalOpen = false;
+  }
 
   removeData(row: any) {
-    let value = this.stocks.findIndex((column:any) => row.id == column.id);
-    this.stocks.splice(value, 1)
-    //  this.myarray = this.myarray.filter(column => row.id !== column.id);
+    this.stockService.deleteEntity(row.id).subscribe(
+       (resp: any) => {this.detail = resp;this.getStocks();}
+    )
   }
 
   editData(row: any) {
+    this.isModalOpen = true;
     this.detail = this.stocks.filter((m:any) => row.id == m.id)[0];
   }
 
   saveOrEditData() {
-    if (this.detail.id > 0) {
-      this.stocks;
-      this.detail = {};
-      alert('Updated Successfully');
-    }
-    else if(this.detail.name.length >= 3 && this.detail.price.length >= 1 || this.detail.mfd.length >=3) {
-      this.detail.id = this.stocks.length + 1;
-      this.stocks.push(this.detail);
-      this.detail = {};
-      alert('Saved Successfully');
-    }
+    this.stockService.saveEntity(this.detail).subscribe(
+      resp => {this.stocks = resp; this.getStocks();}
+    )
+    this.isModalOpen = false;
   }
   cancel() {
     this.detail = {};
+    this.isModalOpen = false;
   }
   ngOnInit() {
-    fetch('./assets/stock.json').then(stockData =>stockData.json()).then(json =>
-    this.stocks = json );
   }
 
 }

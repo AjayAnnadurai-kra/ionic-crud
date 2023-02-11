@@ -1,58 +1,62 @@
 <ion-header>
   <ion-toolbar color="light">
-    <ion-button slot="start">
-    <ion-back-button defaultHref="home"></ion-back-button>
-  </ion-button>
+    <button slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </button>
     <ion-title style="text-align:center">warehouse stocklist</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div  class="container-fluid">
+  <div class="container-fluid mt-3 row">
     <div class="col-lg-8 ">
-      <table class="table table-lg" style="border: solid 2px;border-color: seagreen; background-color:cornsilk;">
+      <div style="float: right;" class="my-2">
+        <button class="btn btn-sm btn-secondary" (click)="add()">Add</button>
+      </div>
+      <table class="table table-bordered">
         <thead>
-          <th>ID</th>
-          <th>NAME</th>
-          <th>PRICE</th>
-          <th>MFD</th>
+          <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>PRICE</th>
+            <th>MFD</th>
+            <th></th>
+            <th></th>
+          </tr>
         </thead>
         <tbody>
           <tr *ngFor="let stock of stocks">
             <td>{{stock.id}}</td>
-            <td>{{stock.name}}</td>
-            <td>{{stock.price}}</td>
-            <td>{{stock.mfd}}</td>
-            <td><ion-button size="small" fill="outline" color="primary" (click)="editData(stock)">Edit</ion-button></td>
-            <td><ion-button size="small" fill="outline" color="danger" (click)="removeData(stock)">Delete</ion-button></td>
+            <td>{{stock.ITEMS}}</td>
+            <td>{{stock.PRICE}}</td>
+            <td>{{stock.MFD}}</td>
+            <td><button class="btn btn-sm btn-outline-primary" (click)="editData(stock)">Edit</button></td>
+            <td><button class="btn btn-sm btn-outline-danger" (click)="removeData(stock)">Delete</button></td>
           </tr>
         </tbody>
       </table>
-    </div><br><br>
-    <div style="display: flex;flex-direction: column;border: solid 1px;border-color: seagreen;padding: 8px; background-color:cornsilk"
-      class="col-lg-3 mx-3">
+    </div>
+    <div style="border: solid 1px rgb(189, 188, 188);background-color: white;" class="col-lg-3 mx-3 my-2 card p-3" *ngIf="isModalOpen">
       <form standalone style="margin:auto">
-        <ion-list>
-          <ion-item>
-            <ion-label position="floating">ID</ion-label>
-            <ion-input type="text" disabled></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="floating">Name</ion-label>
-            <ion-input type="text" [(ngModel)]="detail.name" name="Name" autocomplete="off"></ion-input>
-          </ion-item>
-          <ion-item>
-          <ion-label position="floating">Price</ion-label>
-            <ion-input type="text" [(ngModel)]="detail.price" name="Price"></ion-input>
-          </ion-item>
-          <ion-item>
-          <ion-label position="floating">MFD</ion-label>
-          <ion-input type="text" [(ngModel)]="detail.mfd" name="MFD"></ion-input>
-        </ion-item>
-        </ion-list>
-        <div class="mx-4">
-          <ion-button size="small" fill="outline" color="success" (click)="saveOrEditData()">Save</ion-button>
-          <ion-button size="small" fill="outline" color="warning" (click)="cancel()">Cancel</ion-button>
+         <div>
+            <label class="form-label">ID</label>
+            <input type="text" class="form-control form-control-sm" disabled>
+          </div>
+         <div>
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="detail.ITEMS" name="Name" autocomplete="off">
+          </div>
+         <div>
+            <label class="form-label">Price</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="detail.PRICE" name="Price">
+          </div>
+         <div>
+            <label class="form-label">MFD</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="detail.MFD" name="MFD">
+          </div>
+        <div class="mx-4 my-2">
+          <button class="btn btn-sm btn-outline-success mx-2" (click)="saveOrEditData()">Save</button>
+          <button class="btn btn-sm btn-outline-warning mx-2" (click)="cancel()">Cancel</button>
         </div>
       </form>
     </div>
