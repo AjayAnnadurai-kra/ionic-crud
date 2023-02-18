@@ -19,6 +19,10 @@ export class StocklistPage implements OnInit {
   detail:any = {};
   isModalOpen:boolean = false;
 
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
+
   constructor(public stockService:StocksService) {
     this.getStocks();
   }
